@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Unknown Solutions</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <h2 class="logo"><img src="assets/images/logo.png" alt="Logo" class="logo-img"></h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<div class="glass-card">
+    <h2>Login</h2>
+    <form action="backend/login.php" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit" name="login">Login</button>
+    </form>
+    <a href="register.html" class="btn-secondary">Don't have an account? Register</a>
+</div>
+
+<footer>
+    <p>© 2025 Unknown Solutions — All Rights Reserved</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
