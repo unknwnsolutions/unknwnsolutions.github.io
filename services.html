@@ -1,49 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unknown Solutions - Services</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unknown Solutions - Services</title>
+  <style>
+    /* RESET */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    /* VARIABLES */
+    :root {
+      --bg-color: #111;
+      --accent-color: #FFD700;
+      --text-color: #fff;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+    /* GLOBAL STYLES */
+    body {
+      margin: 0;
+      padding-top: 60px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text-color);
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
+      background-size: 600% 600%;
+      animation: gradientBG 20s ease infinite;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+    nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--accent-color);
+      text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+    }
+    nav .nav-links {
+      list-style: none;
+      display: flex;
+    }
+    nav .nav-links li {
+      margin-left: 20px;
+    }
+    nav .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav .nav-links a:hover {
+      color: var(--accent-color);
+    }
+    nav input[type=checkbox] {
+      display: none;
+    }
+    nav label.nav-toggle {
+      display: none;
+      font-size: 28px;
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      nav .nav-links {
+        position: fixed;
+        background: rgba(0, 0, 0, 0.9);
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        flex-direction: column;
+        padding-top: 60px;
+        transition: right 0.3s ease;
+      }
+      nav .nav-links li {
+        margin: 20px 0;
+        text-align: center;
+      }
+      nav label.nav-toggle {
+        display: block;
+      }
+      nav input[type=checkbox]:checked ~ .nav-links {
+        right: 0;
+      }
+    }
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--accent-color);
+      color: #111;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    /* Services Section */
+    #services {
+      padding: 4rem 2rem;
+    }
+    #services h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--accent-color);
+      text-shadow: 0 0 5px var(--accent-color);
+    }
+    .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .service-card {
+      flex: 1 1 300px;
+      max-width: 300px;
+      background: var(--glass-bg);
+      border-radius: 15px;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+    .service-card p {
+      font-size: 1rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--text-color);
+    }
+    footer p {
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-    <header class="topbar">
-        <img src="assets/images/logo.png" alt="Logo" class="logo-img">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="services.html">Services</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="register.html">Register</a>
-            <a href="login.html">Login</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <h1>Our Services</h1>
-        <p>Explore the full range of services we offer for small businesses.</p>
-    </section>
+  <nav>
+    <div class="logo">Unknown Solutions</div>
+    <input type="checkbox" id="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle">&#9776;</label>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-    <section class="cards">
-        <div class="card">
-            <img src="assets/images/service1.png" alt="Service 1">
-            <h3>Branding</h3>
-            <p>Create logos, brand guides, and professional identities.</p>
-        </div>
-        <div class="card">
-            <img src="assets/images/service2.png" alt="Service 2">
-            <h3>Marketing</h3>
-            <p>Social media, ad campaigns, and content strategy tailored for you.</p>
-        </div>
-        <div class="card">
-            <img src="assets/images/service3.png" alt="Service 3">
-            <h3>Photography</h3>
-            <p>Professional photos of products, services, and events.</p>
-        </div>
-    </section>
+  <section id="services">
+    <h1>Our Services</h1>
+    <div class="services-container">
+      <div class="service-card">
+        <h3>Web Development</h3>
+        <p>We create modern and responsive websites to help you establish a strong online presence.</p>
+        <a href="#" class="btn">Learn More</a>
+      </div>
+      <div class="service-card">
+        <h3>Mobile Apps</h3>
+        <p>Our team develops high-quality mobile applications for both iOS and Android platforms.</p>
+        <a href="#" class="btn">Learn More</a>
+      </div>
+      <div class="service-card">
+        <h3>UI/UX Design</h3>
+        <p>We design intuitive and engaging user interfaces to provide the best user experience.</p>
+        <a href="#" class="btn">Learn More</a>
+      </div>
+      <div class="service-card">
+        <h3>Cloud Solutions</h3>
+        <p>We offer reliable cloud computing services to ensure your business operates smoothly online.</p>
+        <a href="#" class="btn">Learn More</a>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        &copy; 2025 Unknown Solutions. All rights reserved.
-    </footer>
+  <footer>
+    <p>&copy; 2025 Unknown Solutions. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
