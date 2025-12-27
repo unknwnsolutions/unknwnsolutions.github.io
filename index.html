@@ -1,71 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unknown Solutions | Where Local Stories Meet Bold Strategies</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unknown Solutions | Digital Shop</title>
+
+<style>
+/* ===================== ROOT THEME ===================== */
+:root {
+    --bg: #000;
+    --gold: #f5c542;
+    --glass: rgba(255,255,255,0.08);
+    --blur: blur(14px);
+    --text: #eaeaea;
+}
+
+/* ===================== RESET ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* ===================== MOVING BACKGROUND ===================== */
+.bg-animate {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(245,197,66,0.15), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(245,197,66,0.12), transparent 45%);
+    animation: moveBG 12s linear infinite alternate;
+    z-index: -2;
+}
+
+@keyframes moveBG {
+    from { transform: scale(1) translateY(0); }
+    to { transform: scale(1.2) translateY(-40px); }
+}
+
+/* ===================== HEADER ===================== */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 16px 40px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: var(--blur);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+header h1 {
+    color: var(--gold);
+    letter-spacing: 1px;
+}
+
+nav a {
+    color: var(--text);
+    margin-left: 20px;
+    text-decoration: none;
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ===================== HERO ===================== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.hero-box {
+    background: var(--glass);
+    backdrop-filter: var(--blur);
+    padding: 60px;
+    border-radius: 18px;
+    text-align: center;
+    max-width: 700px;
+    animation: fadeUp 1.2s ease forwards;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-box h2 {
+    font-size: 2.6rem;
+    color: var(--gold);
+}
+
+.hero-box p {
+    margin: 18px 0 28px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--gold);
+    color: #000;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(245,197,66,0.5);
+}
+
+/* ===================== CROWD FEEL ===================== */
+.crowd {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%,100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* ===================== SHOP FLOOR ===================== */
+.shop {
+    padding: 100px 60px;
+}
+
+.shop h3 {
+    text-align: center;
+    color: var(--gold);
+    margin-bottom: 50px;
+    font-size: 2rem;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--glass);
+    backdrop-filter: var(--blur);
+    border-radius: 16px;
+    padding: 30px;
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.card h4 {
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+    text-align: center;
+    padding: 40px;
+    opacity: 0.6;
+}
+</style>
 </head>
+
 <body>
 
-<!-- HEADER -->
+<div class="bg-animate"></div>
+
 <header>
-    <div class="logo">Unknown Solutions</div>
+    <h1>Unknown Solutions</h1>
     <nav>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">Experience</a>
+        <a href="#">Join</a>
     </nav>
 </header>
 
-<!-- HERO SECTION -->
 <section class="hero">
-    <h1>Where Local Stories Meet Bold Strategies</h1>
-    <p>Helping small businesses grow through branding, marketing and digital presence.</p>
-    <a href="#contact" class="btn">Get Started</a>
+    <div class="hero-box">
+        <h2>Walk Into the Digital Shop</h2>
+        <p>
+            This is not a website.  
+            This is a **place**.  
+            Feel the brand. Feel the presence.  
+            Just like walking into a real shop.
+        </p>
+        <a href="#shop" class="btn">Enter Shop</a>
+        <div class="crowd">🟢 14 people browsing · calm & trusted space</div>
+    </div>
 </section>
 
-<!-- SERVICES SECTION -->
-<section id="services">
-    <h2>Our Services</h2>
-
+<section class="shop" id="shop">
+    <h3>Inside the Shop</h3>
     <div class="cards">
         <div class="card">
-            <h3>Branding</h3>
-            <p>Logo design, brand identity, packaging design.</p>
+            <h4>Signature Product</h4>
+            <p>Designed to feel premium, familiar, and trustworthy.</p>
         </div>
-
         <div class="card">
-            <h3>Social Media Marketing</h3>
-            <p>Social media setup, posters, ad creatives and content strategy.</p>
+            <h4>Customer Favorite</h4>
+            <p>Chosen by many. You’re not alone here.</p>
         </div>
-
         <div class="card">
-            <h3>Business Consulting</h3>
-            <p>Marketing planning, growth strategies and product positioning.</p>
+            <h4>New Arrival</h4>
+            <p>Fresh, exciting, and already getting attention.</p>
         </div>
     </div>
 </section>
 
-
-<!-- PORTFOLIO SECTION -->
-<section id="portfolio">
-    <h2>Client Work Showcase</h2>
-    <p>Coming Soon — Your brand can be next!</p>
-</section>
-
-
-<!-- CONTACT SECTION -->
-<section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email us to start your business growth journey:</p>
-    <a href="mailto:unknownsolutions.lk@gmail.com" class="btn">Send Email</a>
-</section>
-
-
-<!-- FOOTER -->
 <footer>
-    © 2025 Unknown Solutions — Empowering Local Businesses
+    © 2025 Unknown Solutions — Digital Physical Experience
 </footer>
 
 </body>
