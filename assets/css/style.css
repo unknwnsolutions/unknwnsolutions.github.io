@@ -1,222 +1,267 @@
-/* ======================
-   Global Styles
-====================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
+/* ==============================
+   Animated Dark + Gold Background
+============================== */
 body {
-    background: linear-gradient(135deg, rgba(255,223,0,0.1), rgba(255,223,0,0.05));
-    animation: backgroundPulse 6s infinite alternate;
     min-height: 100vh;
+    font-family: 'Arial', sans-serif;
     color: #fff;
     overflow-x: hidden;
+    background: linear-gradient(45deg, rgba(0,0,0,0.8), rgba(20,15,0,0.5), rgba(255,223,0,0.05), rgba(10,10,10,0.7));
+    background-size: 400% 400%;
+    animation: movingBackground 20s ease infinite;
+    margin: 0;
 }
 
-/* ======================
-   Background Animation
-====================== */
-@keyframes backgroundPulse {
-    0% {background: linear-gradient(135deg, rgba(255,223,0,0.05), rgba(255,223,0,0.02));}
-    50% {background: linear-gradient(135deg, rgba(255,223,0,0.15), rgba(255,223,0,0.05));}
-    100% {background: linear-gradient(135deg, rgba(255,223,0,0.1), rgba(255,223,0,0.03));}
+@keyframes movingBackground {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 
-/* ======================
-   Top Navigation
-====================== */
+/* ==============================
+   Glass Effect Sections
+============================== */
+section, .hero, footer, .topbar, .glass-card, .card {
+    background: rgba(10,10,10,0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,223,0,0.2);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 15px rgba(255,223,0,0.1);
+}
+
+/* Highlight on hover */
+section:hover, .hero:hover, .glass-card:hover, .card:hover {
+    border-color: rgba(255,223,0,0.6);
+    box-shadow: 0 0 25px rgba(255,223,0,0.3);
+}
+
+/* ==============================
+   Navigation Bar
+============================== */
 .topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background: rgba(0,0,0,0.6);
+    background: rgba(10,10,10,0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,223,0,0.2);
+    z-index: 999;
     position: sticky;
     top: 0;
-    z-index: 999;
-    backdrop-filter: blur(8px);
-}
-
-.topbar .logo img {
-    width: 120px;
-    animation: logoGlow 2s infinite alternate;
-}
-
-@keyframes logoGlow {
-    0% {filter: brightness(1);}
-    50% {filter: brightness(1.5);}
-    100% {filter: brightness(1);}
-}
-
-nav {
-    display: flex;
-    gap: 25px;
+    flex-wrap: wrap; /* allow wrapping for mobile */
 }
 
 nav a {
+    color: #FFD700;
     text-decoration: none;
-    color: #fff;
-    font-weight: 600;
-    transition: color 0.3s;
+    margin: 5px 15px;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 nav a:hover {
-    color: gold;
-}
-
-/* Hamburger for Mobile */
-.hamburger {
-    display: none;
-    font-size: 28px;
-    background: none;
-    border: none;
     color: #fff;
-    cursor: pointer;
+    transform: scale(1.05);
 }
 
-/* ======================
+/* ==============================
+   Logo Animation (Bright-Dim Loop)
+============================== */
+.logo-img {
+    width: 150px;
+    animation: logoGlow 3s infinite alternate;
+}
+
+@keyframes logoGlow {
+    0% {filter: brightness(0.8);}
+    50% {filter: brightness(1.5);}
+    100% {filter: brightness(0.8);}
+}
+
+/* ==============================
    Hero Section
-====================== */
+============================== */
 .hero {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 70vh;
+    justify-content: center;
     text-align: center;
-    background: rgba(0,0,0,0.3);
-    margin: 20px;
-    border-radius: 15px;
-    padding: 20px;
+    min-height: 80vh;
+    padding: 40px 20px;
 }
 
 .hero h1 {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 15px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .hero p {
-    font-size: 1.3rem;
-    opacity: 0.8;
-}
-
-/* ======================
-   Section Scroll Fade
-====================== */
-.scroll-fade {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    margin-bottom: 25px;
     opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease-in-out;
+    transform: translateY(20px);
 }
 
-.scroll-fade.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* Hero Buttons */
+.actions .btn, .actions .btn-secondary {
+    padding: 12px 30px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
-/* ======================
-   Forms
-====================== */
+.btn {
+    background: #FFD700;
+    color: #000;
+}
+
+.btn:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #FFD700;
+    border: 2px solid #FFD700;
+}
+
+.btn-secondary:hover {
+    background: #FFD700;
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* ==============================
+   Cards Section
+============================== */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.card {
+    background: rgba(10,10,10,0.6);
+    border-radius: 15px;
+    width: clamp(220px, 25%, 300px);
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(255,223,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease, transform 0.8s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 0.95rem;
+}
+
+/* ==============================
+   Forms (Login/Register/Contact)
+============================== */
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    max-width: 400px;
-    margin: 30px auto;
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
 }
 
-input, button {
-    padding: 12px 15px;
+form input, form textarea {
+    margin-bottom: 15px;
+    padding: 12px;
     border-radius: 8px;
     border: none;
+    background: rgba(255,223,0,0.05);
+    color: #fff;
     font-size: 1rem;
 }
 
-input {
-    outline: none;
+form input::placeholder, form textarea::placeholder {
+    color: #ccc;
 }
 
-button {
-    background: gold;
+form button {
+    background: #FFD700;
     color: #000;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
-button:hover {
-    background: #ffea00;
+form button:hover {
+    transform: scale(1.05);
+    background: #fff;
 }
 
-/* ======================
+/* ==============================
    Footer
-====================== */
+============================== */
 footer {
     text-align: center;
     padding: 20px;
-    background: rgba(0,0,0,0.6);
-    margin-top: 30px;
+    color: #FFD700;
+    margin-top: 40px;
 }
 
-/* ======================
-   Media Queries for Mobile
-====================== */
+/* ==============================
+   Animations
+============================== */
+.fade-seq1, .fade-seq2, .fade-seq3, .scroll-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* ==============================
+   Responsive
+============================== */
 @media (max-width: 768px) {
-    nav {
-        position: absolute;
-        top: 70px;
-        right: 0;
+    .cards {
         flex-direction: column;
-        background: rgba(0,0,0,0.9);
-        width: 200px;
-        padding: 20px;
-        display: none;
+        align-items: center;
     }
-
-    nav.active {
-        display: flex;
+    .topbar {
+        flex-direction: column;
+        gap: 15px;
     }
-
-    .hamburger {
-        display: block;
+    nav a {
+        margin: 8px 10px;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1rem;
     }
 }
-
-/* ======================
-   Lists
-====================== */
-ul {
-    list-style: none;
-}
-
-ul li {
-    margin: 8px 0;
-}
-
-/* ======================
-   Section Highlights
-====================== */
-section {
-    padding: 50px 20px;
-    margin: 20px auto;
-    max-width: 1100px;
-    border-radius: 15px;
-    background: rgba(0,0,0,0.3);
-}
-
-/* ======================
-   Portfolio / Gallery
-====================== */
-.portfolio-gallery {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
-/* ======================
-   Animations JS Trigger
-====================== */
